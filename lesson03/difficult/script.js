@@ -1,11 +1,12 @@
 "use strict";
-let lang = "en";
-let days = [
-  {
-    ru: "Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье",
-    en: "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday,Sunday",
-  },
-];
+let lang = "ru";
+let days = new Map([
+  [
+    "ru",
+    "c. Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье",
+  ],
+  ["en", "c. Monday, Tuesday, Wednesday, Thursday, Friday, Saturday,Sunday"],
+]);
 
 if (lang === "ru") {
   console.log(
@@ -33,7 +34,7 @@ switch (lang) {
     console.log("b. lang задано не верно");
 }
 
-console.log(days[0][lang]);
+console.log(days.get(lang));
 
 let namePerson = "Артем";
 namePerson === "Артем"
