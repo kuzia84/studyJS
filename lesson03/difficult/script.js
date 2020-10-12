@@ -1,24 +1,10 @@
 "use strict";
-let lang = "ru";
+let lang = "en";
 let days = [
-  [
-    "Понедельник",
-    "Вторник",
-    "Среда",
-    "Четверг",
-    "Пятница",
-    "Суббота",
-    "Воскресенье",
-  ],
-  [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ],
+  {
+    ru: "Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье",
+    en: "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday,Sunday",
+  },
 ];
 
 if (lang === "ru") {
@@ -47,10 +33,7 @@ switch (lang) {
     console.log("b. lang задано не верно");
 }
 
-let arrDays = [];
-arrDays =
-  lang === "ru" ? days[0] : lang === "en" ? days[1] : "lang задано не верно";
-console.log(arrDays);
+console.log(days[0][lang]);
 
 let namePerson = "Артем";
 namePerson === "Артем"
