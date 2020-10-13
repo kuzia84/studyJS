@@ -1,44 +1,20 @@
 "use strict";
-let lang = "ru";
-let days = new Map([
-  [
-    "ru",
-    "c. Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье",
-  ],
-  ["en", "c. Monday, Tuesday, Wednesday, Thursday, Friday, Saturday,Sunday"],
-]);
+let foo = function (data) {
+  if (typeof data === "string") {
+    //проверяем, является ли data строкой
+    let str = data.trim(); //присваеваем str строку из data и убираем пробелы по караям строки
+    if (str.length > 30) {
+      // проверяем длину str, ели она больше 30
+      str = str.slice(0, 29) + "..."; // то обрезаем все после 30 символа и добавляем троеточие
+    }
+    return str; //возвращаем str
+  } else {
+    return "передайте строку в функцию";
+  }
+};
 
-if (lang === "ru") {
-  console.log(
-    "a. Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье"
-  );
-} else if (lang === "en") {
-  console.log(
-    "a. Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"
-  );
-} else {
-  console.log("a. lang задано не верно");
-}
-switch (lang) {
-  case "ru":
-    console.log(
-      "b. Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье"
-    );
-    break;
-  case "en":
-    console.log(
-      "b. Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"
-    );
-    break;
-  default:
-    console.log("b. lang задано не верно");
-}
-
-console.log(days.get(lang));
-
-let namePerson = "Артем";
-namePerson === "Артем"
-  ? console.log(namePerson, "директор")
-  : namePerson === "Максим"
-  ? console.log(namePerson, "преподаватель")
-  : console.log(namePerson, "студент");
+console.log(
+  foo(
+    "      Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum commodi incidunt nihil natus quia libero modi? Iste harum aperiam nostrum cumque doloremque vitae, minus fugit quaerat. Exercitationem illo quam autem. "
+  )
+);
