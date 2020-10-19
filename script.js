@@ -48,9 +48,16 @@ let appData = {
       } while (!isNumber(cashIncome));
       appData.income[itemIncome] = cashIncome;
     }
-    let addExpenses = prompt(
-      "Перечислите возможные расходы за рассчитываемый период через запятую",
-      "квартплата, проездной, кредит"
+    let addExpenses;
+    do {
+      addExpenses = prompt(
+        "Перечислите возможные расходы за рассчитываемый период через запятую",
+        "квартплата, проездной, кредит"
+      );
+    } while (
+      addExpenses === null ||
+      addExpenses.trim() === "" ||
+      parseFloat(addExpenses)
     );
     appData.addExpenses = addExpenses
       .split(", ")
