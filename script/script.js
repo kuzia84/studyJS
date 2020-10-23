@@ -38,6 +38,7 @@ const render = function () {
 
     btnTodoComplete.addEventListener("click", () => {
       item.completed = !item.completed;
+      localStorage.todoList = JSON.stringify(todoData);
       render();
     });
 
@@ -45,6 +46,7 @@ const render = function () {
 
     btnTodoRemove.addEventListener("click", () => {
       todoData.splice(todoData.indexOf(item), 1);
+      localStorage.todoList = JSON.stringify(todoData);
       render();
     });
   });
@@ -63,14 +65,8 @@ todoControl.addEventListener("submit", (event) => {
   } else {
     todoData.push(newTodo);
     headerInput.value = "";
+    localStorage.todoList = JSON.stringify(todoData);
 
     render();
   }
-});
-
-document.addEventListener("click", () => {
-  localStorage.todoList = JSON.stringify(todoData);
-});
-document.addEventListener("keyup", () => {
-  localStorage.todoList = JSON.stringify(todoData);
 });
