@@ -36,11 +36,8 @@ let btnSatrt = document.getElementById("start"),
   expensesItems = document.querySelectorAll(".expenses-items"),
   inputIncomeTitle = document.querySelector(".income-title"),
   incomeItems = document.querySelectorAll(".income-items"),
-  inputSalaryAmount = document.querySelector(".salary-amount");
-
-let isNumber = function (n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-};
+  inputSalaryAmount = document.querySelector(".salary-amount"),
+  data = document.querySelector(".data");
 
 let appData = {
   budget: 0,
@@ -97,6 +94,8 @@ let appData = {
     });
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, addExpensesBtn);
     expensesItems = document.querySelectorAll(".expenses-items");
+    numericInputs = document.querySelectorAll('input[placeholder="Сумма"]');
+    textInputs = document.querySelectorAll('input[placeholder="Наименование"]');
     if (expensesItems.length === 3) {
       addExpensesBtn.style.display = "none";
     }
@@ -203,29 +202,22 @@ start.addEventListener("click", appData.start);
 addExpensesBtn.addEventListener("click", appData.addExpensesBlock);
 addIncomeBtn.addEventListener("click", appData.addIncomeBlock);
 rangePeriodSelect.addEventListener("input", appData.periodChange);
-
-document
-  .querySelectorAll('input[placeholder="Наименование"]')
-  .forEach((item) => {
-    //получаем все инпуты для суммы
+data.addEventListener("click", () => {
+  let numericInputs = document.querySelectorAll('input[placeholder="Сумма"]');
+  let textInputs = document.querySelectorAll(
+    'input[placeholder="Наименование"]'
+  );
+  textInputs.forEach((item) => {
     item.addEventListener("keyup", function () {
       //вешаем отслеживание события на все инпуты
       item.value = item.value.replace(/[^а-яА-ЯїЇєЄіІёЁ \W]/g, ""); // меняем значение инпута, если неправельный ввод
     });
   });
-document.querySelectorAll('input[placeholder="Сумма"]').forEach((item) => {
-  //получаем все инпуты для суммы
-  item.addEventListener("keyup", function () {
-    //вешаем отслеживание события на все инпуты
-    item.value = item.value.replace(/[^\d]/g, ""); // меняем значение инпута, если неправельный ввод
+
+  numericInputs.forEach((item) => {
+    item.addEventListener("keyup", function () {
+      //вешаем отслеживание события на все инпуты
+      item.value = item.value.replace(/[^\d]/g, ""); // меняем значение инпута, если неправельный ввод
+    });
   });
 });
-
-// console.log("Расходы за месяц:", appData.expensesMonth);
-// console.log(appData.getTargetMonth());
-// console.log(appData.getStatusIncome());
-// console.log("Возможные расходы", appData.addExpenses);
-// console.log("Наша программа включает в себя данные:");
-// for (const prop in appData) {
-//   console.log(prop, appData[prop]);
-// }
