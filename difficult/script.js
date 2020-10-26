@@ -10,10 +10,6 @@ const randomColor = function () {
   let number3 = parseInt(Math.random() * 256);
 
   function decimalToHexString(number) {
-    if (number < 0) {
-      number = 0xffffffff + number + 1;
-    }
-
     return number.toString(16).toUpperCase();
   }
 
