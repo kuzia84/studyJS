@@ -55,7 +55,6 @@ let appData = {
   deposit: false,
   percentDeposit: 0,
   moneyDeposit: 0,
-  period: 3,
   startCheck: function () {
     if (inputSalaryAmount.value === "" || inputSalaryAmount.value === null) {
       btnSatrt.setAttribute("disabled", "disabled");
@@ -103,14 +102,18 @@ let appData = {
     }
   },
   getExpenses: function () {
-    expensesItems.forEach(function (item) {
+    expensesItems.forEach((item) => {
       let itemExpenses = item.querySelector(".expenses-title").value;
       let cashExpenses = item.querySelector(".expenses-amount").value;
 
       if (itemExpenses !== "" && cashExpenses !== "") {
-        appData.expenses[itemExpenses] = cashExpenses;
+        this.expenses[itemExpenses] = cashExpenses;
       }
     });
+
+    for (let key in this.expenses) {
+      this.expensesMonth += +this.expenses[key];
+    }
   },
   addIncomeBlock: function () {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
@@ -181,14 +184,14 @@ let appData = {
     });
 
     rangePeriodSelect.value = 1;
-    periodAmount.value = 1;
+    periodAmount.innerHTML = 1;
 
     let dataForm = document.querySelector(".data");
     let dataInputs = dataForm.querySelectorAll("input[type=text]");
     dataInputs.forEach((item) => {
       item.removeAttribute("disabled", "disabled");
     });
-    start.style.display = "block";
+    btnSatrt.style.display = "block";
     btnCancel.style.display = "none";
 
     for (let index = 1; index < incomeItems.length; index++) {
@@ -199,12 +202,25 @@ let appData = {
       expensesItems[0].parentNode.removeChild(expensesItems[index]);
     }
     addExpensesBtn.style.display = "block";
+
+    this.budget = 0;
+    this.budgetDay = 0;
+    this.budgetMonth = 0;
+    this.income = {};
+    this.addIncome = [];
+    this.incomeMonth = 0;
+    this.expenses = {};
+    this.expensesMonth = 0;
+    this.addExpenses = [];
+    this.deposit = false;
+    this.percentDeposit = 0;
+    this.moneyDeposit = 0;
   },
 };
 
 document.addEventListener("DOMContentLoaded", appData.startCheck);
 inputSalaryAmount.addEventListener("input", appData.startCheck);
-start.addEventListener("click", () => {
+btnSatrt.addEventListener("click", () => {
   let bindStart = appData.start.bind(appData);
   bindStart();
   appData.start;
@@ -213,10 +229,14 @@ start.addEventListener("click", () => {
   textItems.forEach((item) => {
     item.setAttribute("disabled", "disabled");
   });
-  start.style.display = "none";
+  btnSatrt.style.display = "none";
   btnCancel.style.display = "block";
 });
-btnCancel.addEventListener("click", appData.resetForm);
+btnCancel.addEventListener("click", () => {
+  let bindReset = appData.resetForm.bind(appData);
+  bindReset();
+  appData.resetForm;
+});
 addExpensesBtn.addEventListener("click", appData.addExpensesBlock);
 addIncomeBtn.addEventListener("click", appData.addIncomeBlock);
 rangePeriodSelect.addEventListener("input", appData.periodChange);
