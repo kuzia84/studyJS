@@ -25,10 +25,7 @@ DomElement.prototype.createElement = function () {
     return;
   }
 
-  newElement.setAttribute(
-    "style",
-    `height: ${this.height}px; width: ${this.width}px; background: ${this.bg}; font-size: ${this.fontSize}px; position: absolute; left:0px; top:0px;`
-  );
+  newElement.style.cssText = `height: ${this.height}px; width: ${this.width}px; background: ${this.bg}; font-size: ${this.fontSize}px; position: absolute; left:0px; top:0px;`;
 
   document.body.insertAdjacentElement("afterbegin", newElement);
 };
