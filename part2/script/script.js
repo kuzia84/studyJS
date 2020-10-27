@@ -213,6 +213,11 @@ AppData.prototype.resetForm = function () {
   this.deposit = false;
   this.percentDeposit = 0;
   this.moneyDeposit = 0;
+  this.startCheck();
+  expensesItems = document.querySelectorAll(".expenses-items");
+  numericInputs = document.querySelectorAll('input[placeholder="Сумма"]');
+  textInputs = document.querySelectorAll('input[placeholder="Наименование"]');
+  incomeItems = document.querySelectorAll(".income-items");
 };
 AppData.prototype.eventsListeners = function () {
   document.addEventListener("DOMContentLoaded", this.startCheck);
