@@ -70,8 +70,7 @@ class AppData {
   start() {
     this.budget = +inputSalaryAmount.value;
 
-    this.getExpenses();
-    this.getIncome();
+    this.getExpInc();
     this.getExpensesMonth();
     this.getAddExpenses();
     this.getAddIncome();
@@ -105,16 +104,6 @@ class AppData {
       addExpensesBtn.style.display = "none";
     }
   }
-  getExpenses() {
-    expensesItems.forEach((item) => {
-      let itemExpenses = item.querySelector(".expenses-title").value;
-      let cashExpenses = item.querySelector(".expenses-amount").value;
-
-      if (itemExpenses !== "" && cashExpenses !== "") {
-        this.expenses[itemExpenses] = cashExpenses;
-      }
-    });
-  }
   addIncomeBlock() {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
     let cloneIncomeIteminputs = cloneIncomeItem.querySelectorAll("input");
@@ -127,15 +116,17 @@ class AppData {
       addIncomeBtn.style.display = "none";
     }
   }
-  getIncome() {
-    incomeItems.forEach((item) => {
-      let itemIncome = item.querySelector(".income-title").value;
-      let cashIncome = item.querySelector(".income-amount").value;
-
-      if (itemIncome !== "" && cashIncome !== "") {
-        this.income[itemIncome] = cashIncome;
+  getExpInc() {
+    const count = (item) => {
+      const startStr = item.className.split("-")[0],
+        itemTitle = item.querySelector(`.${startStr}-title`).value,
+        itemName = item.querySelector(`.${startStr}-amount`).value;
+      if (itemTitle !== "" && itemName !== "") {
+        this[startStr][itemTitle] = itemName;
       }
-    });
+    };
+    expensesItems.forEach(count);
+    incomeItems.forEach(count);
 
     for (let key in this.income) {
       this.incomeMonth += +this.income[key];
@@ -177,8 +168,8 @@ class AppData {
     return this.budgetMonth * rangePeriodSelect.value;
   }
   resetForm() {
-    const calcForm = document.querySelector(".calc");
-    let inputs = calcForm.querySelectorAll("input[type=text]");
+    const calcForm = document.querySelector(".calc"),
+      inputs = calcForm.querySelectorAll("input[type=text]");
     inputs.forEach((item) => {
       item.value = "";
     });
@@ -186,8 +177,8 @@ class AppData {
     rangePeriodSelect.value = 1;
     periodAmount.innerHTML = 1;
 
-    const dataForm = document.querySelector(".data");
-    let dataInputs = dataForm.querySelectorAll("input[type=text]");
+    const dataForm = document.querySelector(".data"),
+      dataInputs = dataForm.querySelectorAll("input[type=text]");
     dataInputs.forEach((item) => {
       item.removeAttribute("disabled");
     });
@@ -215,6 +206,11 @@ class AppData {
     this.deposit = false;
     this.percentDeposit = 0;
     this.moneyDeposit = 0;
+    this.startCheck();
+    expensesItems = document.querySelectorAll(".expenses-items");
+    numericInputs = document.querySelectorAll('input[placeholder="Сумма"]');
+    textInputs = document.querySelectorAll('input[placeholder="Наименование"]');
+    incomeItems = document.querySelectorAll(".income-items");
   }
   eventsListeners() {
     document.addEventListener("DOMContentLoaded", this.startCheck);
@@ -224,7 +220,7 @@ class AppData {
       bindStart();
       this.start;
 
-      let textItems = document.querySelectorAll("input[type=text]");
+      const textItems = document.querySelectorAll("input[type=text]");
       textItems.forEach((item) => {
         item.setAttribute("disabled", true);
       });
@@ -240,10 +236,8 @@ class AppData {
     addIncomeBtn.addEventListener("click", this.addIncomeBlock);
     rangePeriodSelect.addEventListener("input", this.periodChange);
     data.addEventListener("click", () => {
-      let numericInputs = document.querySelectorAll(
-        'input[placeholder="Сумма"]'
-      );
-      let textInputs = document.querySelectorAll(
+      numericInputs = document.querySelectorAll('input[placeholder="Сумма"]');
+      textInputs = document.querySelectorAll(
         'input[placeholder="Наименование"]'
       );
       textInputs.forEach((item) => {
