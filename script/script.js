@@ -265,15 +265,17 @@ class AppData {
     document.addEventListener("DOMContentLoaded", this.startCheck);
     inputSalaryAmount.addEventListener("input", this.startCheck);
     btnSatrt.addEventListener("click", () => {
-      if (
-        !parseFloat(depositPercent.value) ||
-        depositPercent.value > 100 ||
-        depositPercent.value <= 0
-      ) {
-        alert("Введите число от 1 до 100");
-        return;
-      } else {
-        depositPercent.value = depositPercent.value / 100;
+      if (depositCheck.checked) {
+        if (
+          !parseFloat(depositPercent.value) ||
+          depositPercent.value > 100 ||
+          depositPercent.value <= 0
+        ) {
+          alert("Введите число от 1 до 100");
+          return;
+        } else {
+          depositPercent.value = depositPercent.value / 100;
+        }
       }
       const bindStart = this.start.bind(this);
       bindStart();
