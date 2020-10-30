@@ -244,6 +244,8 @@ class AppData {
     depositPercent.style.display = "none";
     depositPercent.setAttribute("disabled", true);
     depositCheck.checked = false;
+    depositBank.removeAttribute("disabled");
+    depositCheck.removeAttribute("disabled");
 
     this.budget = 0;
     this.budgetDay = 0;
@@ -281,6 +283,8 @@ class AppData {
       textItems.forEach((item) => {
         item.setAttribute("disabled", true);
       });
+      depositBank.setAttribute("disabled", true);
+      depositCheck.setAttribute("disabled", true);
       btnSatrt.style.display = "none";
       btnCancel.style.display = "block";
     });
