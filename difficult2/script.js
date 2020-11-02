@@ -1,6 +1,7 @@
 "use strict";
 const animateObj = document.querySelector(".animate"),
-  startAnimation = document.querySelector(".startAnimation");
+  startAnimation = document.querySelector(".startAnimation"),
+  reset = document.querySelector(".reset");
 let counter = 0,
   animationInterval,
   animate = false;
@@ -24,4 +25,10 @@ startAnimation.addEventListener("click", () => {
     animate = false;
     cancelAnimationFrame(animationInterval);
   }
+});
+reset.addEventListener("click", () => {
+  counter = 0;
+  cancelAnimationFrame(animationInterval);
+  animateObj.style.borderRadius = "0%";
+  animate = false;
 });
