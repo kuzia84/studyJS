@@ -1,3 +1,5 @@
+/* eslint-disable strict */
+/* eslint-disable indent */
 "use strict";
 function dateInfo() {
   const infoDayTime = document.querySelector(".day-time"),
@@ -6,7 +8,7 @@ function dateInfo() {
     infoDaysRemain = document.querySelector(".days-remain");
   function getTime() {
     const currentDate = new Date().getTime(),
-      newYear = new Date(2021, 1, 1).getTime(),
+      newYear = new Date(2021, 0, 1).getTime(),
       timeRemainig = (newYear - currentDate) / 1000,
       hours = new Date().getHours(),
       days = Math.floor(timeRemainig / 60 / 60 / 24),
