@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
       popupContent = popup.querySelector(".popup-content"),
       popupBtns = document.querySelectorAll(".popup-btn");
 
-    const anumatePopup = () => {
+    const animatePopup = () => {
       popupContent.style.opacity = 0;
       const animationStart = Date.now();
       const animationTimer = setInterval(() => {
@@ -86,20 +86,14 @@ window.addEventListener("DOMContentLoaded", () => {
       }, 20);
     };
 
-    if (screen.width > 768) {
-      popupBtns.forEach((item) =>
-        item.addEventListener("click", () => {
-          popup.style.display = "block";
-          anumatePopup();
-        })
-      );
-    } else {
-      popupBtns.forEach((item) =>
-        item.addEventListener("click", () => {
-          popup.style.display = "block";
-        })
-      );
-    }
+    popupBtns.forEach((item) =>
+      item.addEventListener("click", () => {
+        popup.style.display = "block";
+        if (document.body.clientWidth > 768) {
+          animatePopup();
+        }
+      })
+    );
 
     btnPopupClose.addEventListener("click", () => {
       popup.style.display = "none";
@@ -113,7 +107,7 @@ window.addEventListener("DOMContentLoaded", () => {
       btnScrollFrirstScreen = document.querySelector("#scroll-service-block"),
       scrollTo = serviceBlock.offsetTop;
 
-    const anumateScroll = () => {
+    const animateScroll = () => {
       const animationStart = Date.now();
       const animationTimer = setInterval(() => {
         const timePassed = Date.now() - animationStart;
@@ -133,7 +127,7 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     btnScrollFrirstScreen.addEventListener("click", () => {
-      anumateScroll();
+      animateScroll();
     });
   };
   scrollFrirstScreen();
