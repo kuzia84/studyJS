@@ -102,33 +102,37 @@ window.addEventListener("DOMContentLoaded", () => {
   togglePopup();
 
   //ScrollFrirstScreen
-  const scrollFrirstScreen = () => {
-    const serviceBlock = document.querySelector("#service-block"),
-      btnScrollFrirstScreen = document.querySelector("#scroll-service-block"),
-      scrollTo = serviceBlock.offsetTop;
+  const scrollScreen = () => {
+    const scrollLinks = document.querySelectorAll(".scroll-link");
 
-    const animateScroll = () => {
-      const animationStart = Date.now();
-      const animationTimer = setInterval(() => {
-        const timePassed = Date.now() - animationStart;
+    scrollLinks.forEach((element) => {
+      const toBlock = element.getAttribute("href"),
+        scrollTo = document.querySelector(toBlock),
+        scrollToBlock = scrollTo.offsetTop;
 
-        if (timePassed > 510) {
-          clearInterval(animationTimer);
-          return;
-        }
+      const animateScroll = () => {
+        const animationStart = Date.now();
+        const animationTimer = setInterval(() => {
+          const timePassed = Date.now() - animationStart;
 
-        draw(timePassed);
+          if (timePassed > 510) {
+            clearInterval(animationTimer);
+            return;
+          }
 
-        function draw(timePassed) {
-          const scrollValue = timePassed * 0.002 * scrollTo;
-          document.documentElement.scrollTop = scrollValue;
-        }
-      }, 20);
-    };
+          draw(timePassed);
 
-    btnScrollFrirstScreen.addEventListener("click", () => {
-      animateScroll();
+          function draw(timePassed) {
+            const scrollValue = timePassed * 0.002 * scrollToBlock;
+            document.documentElement.scrollTop = scrollValue;
+          }
+        }, 20);
+      };
+
+      element.addEventListener("click", () => {
+        animateScroll();
+      });
     });
   };
-  scrollFrirstScreen();
+  scrollScreen();
 });
