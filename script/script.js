@@ -48,7 +48,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   //Menu
   const toggleMenu = () => {
-    const menu = document.querySelector("menu");
+    const menu = document.querySelector("menu"),
+      btnMenu = document.querySelector(".menu");
 
     const menuHandler = () => {
       menu.classList.toggle("active-menu");
@@ -58,13 +59,13 @@ window.addEventListener("DOMContentLoaded", () => {
       let target = event.target;
       if (
         target.classList.contains("close-btn") ||
-        target.classList.contains("menu") ||
-        target.classList.contains("scroll-link")
+        target.classList.contains("scroll-link") ||
+        target.parentNode === btnMenu
       ) {
         menuHandler();
       } else {
-        target = target.closest("menu");
-        if (!target) {
+        target = target.closest(".active-menu");
+        if (!target && menu.classList.contains("active-menu")) {
           menuHandler();
         }
       }
@@ -127,11 +128,10 @@ window.addEventListener("DOMContentLoaded", () => {
     const scrollLinks = document.querySelectorAll(".scroll-link");
 
     scrollLinks.forEach((element) => {
-      const toBlock = element.getAttribute("href"),
-        scrollTo = document.querySelector(toBlock),
-        scrollToBlock = scrollTo.offsetTop;
-
       const animateScroll = () => {
+        const toBlock = element.getAttribute("href"),
+          scrollTo = document.querySelector(toBlock),
+          scrollToBlock = scrollTo.offsetTop;
         const animationStart = Date.now();
         const animationTimer = setInterval(() => {
           const timePassed = Date.now() - animationStart;
