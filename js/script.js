@@ -20,15 +20,16 @@ class Todo {
     this.todoData.forEach(this.createItem, this);
     this.addToStorage();
     setTimeout(() => {
-      document.querySelector(".animated").style.opacity = 1;
       this.todoData.forEach((element) => {
-        element.animate = false;
+        if (element.animate === true) {
+          document.querySelector(".animated").style.opacity = 1;
+          element.animate = false;
+        }
       });
     }, 500);
   }
 
   createItem(todo) {
-    console.log("todo: ", todo);
     const li = document.createElement("li");
     li.classList.add("todo-item");
     li.key = todo.key;
