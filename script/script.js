@@ -349,19 +349,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
       if (typeValue && squareValue) {
         total = price * typeValue * squareValue * countValue * dayValue;
-        let count = 0;
-        const animate = setInterval(() => {
-          count += 10;
-          totalValue.textContent = count;
-          if (count === total) {
-            clearInterval(animate);
-          }
-          setTimeout(() => {
-            clearInterval(animate);
-            totalValue.textContent = total;
-          }, 1000);
-        }, 0);
+        animateValue(total);
       }
+    };
+
+    const animateValue = (total) => {
+      let count = 0;
+      const animate = setInterval(() => {
+        count += 10;
+        totalValue.textContent = count;
+        if (count >= total) {
+          clearInterval(animate);
+          totalValue.textContent = total;
+        }
+      }, 0);
+      clearInterval(animate - 1);
     };
 
     calcBlock.addEventListener("change", (event) => {
