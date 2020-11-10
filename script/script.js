@@ -349,28 +349,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
       if (typeValue && squareValue) {
         total = price * typeValue * squareValue * countValue * dayValue;
+        let count = 0;
+        const animate = setInterval(() => {
+          count += 10;
+          totalValue.textContent = count;
+          if (count === total) {
+            clearInterval(animate);
+          }
+          setTimeout(() => {
+            clearInterval(animate);
+            totalValue.textContent = total;
+          }, 1000);
+        }, 0);
       }
-
-      const animationStart = Date.now();
-      const animationTimer = setInterval(() => {
-        const timePassed = Date.now() - animationStart;
-
-        if (timePassed > 500) {
-          clearInterval(animationTimer);
-          return;
-        }
-
-        draw(timePassed);
-
-        function draw(timePassed) {
-          const animatedValue = timePassed * 0.002 * total;
-          totalValue.textContent = animatedValue;
-        }
-      }, 50);
-
-      setTimeout(() => {
-        totalValue.textContent = total;
-      }, 510);
     };
 
     calcBlock.addEventListener("change", (event) => {
