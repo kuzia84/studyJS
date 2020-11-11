@@ -348,7 +348,9 @@ window.addEventListener("DOMContentLoaded", () => {
         squareValue = +calcSquare.value;
 
       if (typeValue && squareValue) {
-        total = price * typeValue * squareValue * countValue * dayValue;
+        total = Math.ceil(
+          price * typeValue * squareValue * countValue * dayValue
+        );
         animateValue(total);
       }
     };
