@@ -491,6 +491,9 @@ window.addEventListener("DOMContentLoaded", () => {
       );
       document.getElementById(formId).reset();
       form.querySelector(".form-phone").style.backgroundColor = "";
+      setTimeout(() => {
+        statusMessage.innerHTML = "";
+      }, 8000);
     });
   };
   sendForm("form1");
