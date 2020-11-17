@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обмен валют</title>
+    <script src="./script.js" defer></script>
+    <style>
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .form {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            background-color: #ccc;
+            padding: 15px;
+        }
+
+        .col {
+            flex: 0 0 50%;
+        }
+
+        .bottom {
+            flex: 0 0 100%;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section>
+            <div class="container">
+                <h1>Обмен валют</h1>
+                <h3>Выберите валюту для обмена</h3>
+                <select name="currency" id="currency">
+                    <option value="">Выберите валюту</option>
+                    <option value="USD">Доллар США (USD)</option>
+                    <option value="EUR">Евро (EUR)</option>
+                </select>
+                <form class="form" id="form1">
+                    <div class="col">
+                        <label for="currency1" id="label1">Доллар США (USD)</label>
+                        <input type="text" name="currency1" id="currency1">
+                    </div>
+                    <div class="col">
+                        <label for="currency2" id="label2">Российские рубль (RUB)</label>
+                        <input type="text" name="currency2" id="currency2" disabled="true">
+                    </div>
+                    <div class="bottom">
+                        <button type="submit">Конвертировать</button>
+                    </div>
+                </form>
+
+                <form class="form" id="form2">
+                    <div class="col">
+                        <label for="reverse-currency1" id="reverse-label1">Российские рубль (RUB)</label>
+                        <input type="text" name="reverse-currency1" id="reverse-currency1">
+                    </div>
+                    <div class="col">
+                        <label for="reverse-currency2" id="reverse-label2">Доллар США (USD)</label>
+                        <input type="text" name="currency2" id="reverse-currency2" disabled="true">
+                    </div>
+                    <div class="bottom">
+                        <button type="submit">Конвертировать</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
