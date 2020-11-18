@@ -5,8 +5,8 @@ import "nodelist-foreach-polyfill";
 import "formdata-polyfill";
 import "es6-promise";
 import "fetch-polyfill";
-import elementClosest from "element-closest";
-elementClosest(window);
+import polyfill from "cross-browser-polyfill";
+polyfill();
 
 import countTimer from "./modules/countTimer";
 import toggleMenu from "./modules/toggleMenu";

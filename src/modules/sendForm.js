@@ -17,8 +17,11 @@ const sendForm = (formId) => {
   form.addEventListener("input", (event) => {
     const target = event.target;
 
-    if (target.matches(".form-name") || target.matches(".mess")) {
+    if (target.matches(".form-name")) {
       target.value = target.value.replace(/[^а-я ]/gi, "");
+    }
+    if (target.matches(".mess")) {
+      target.value = target.value.replace(/[^а-я \-\.\!\?\;\:]/gi, "");
     }
 
     if (target.matches(".form-phone")) {

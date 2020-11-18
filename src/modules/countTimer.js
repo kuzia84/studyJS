@@ -28,7 +28,7 @@ function countTimer(deadline) {
     timerMinutes.textContent = timer.minutes;
     timerSeconds.textContent = timer.seconds;
   }
-
+  updateClock();
   const updateClockId = setInterval(updateClock, 1000);
 
   if (getTimeRemaining().timeRemainig < 0) {
