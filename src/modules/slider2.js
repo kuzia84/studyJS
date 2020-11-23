@@ -37,6 +37,7 @@ class SliderCarousel {
       this.addArrow();
       this.controlSlider();
     }
+
     if (this.responsive) {
       this.responsInit();
     }
@@ -162,7 +163,7 @@ class SliderCarousel {
     };
     checkResponse();
 
-    window.addEventListener("resize", this.responsInit);
+    window.addEventListener("resize", this.responsInit.bind(this));
   }
 }
 
